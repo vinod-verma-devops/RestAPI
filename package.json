@@ -1,0 +1,14 @@
+{
+  "name": "node-api",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.16.1",
+    "cookie-parser": "^1.4.3",
+    "express": "~4.14.1",
+    "express-jwt": "^5.1.0",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "~4.8.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}
