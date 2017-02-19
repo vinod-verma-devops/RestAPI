@@ -1,4 +1,4 @@
-# Node.js-API
+# RestAPI
 
 ## Description
 A lightweight REST API built using the MEAN stack: MongoDB, Express.js, and Node.js. GET/POST/PUT/DEL HTTP requests are sent via the browser and data is then queried between the NoSQL database and the client. Response is sent as a JSON.
