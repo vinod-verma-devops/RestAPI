@@ -1,4 +1,5 @@
 // Call packages required 
+var path = require('path');
 var express = require('express');
 var app = express();
 var cookieParser = require('cookie-parser');
@@ -14,15 +15,6 @@ app.use(passport.initialize());
 // Initialize bodyParser()
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
-// Middleware Catch Errors
-app.use(function (err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.status(401);
-    res.json({"messages" : err.name + ": " + err.message});
-  }
-});
 
 
 // Set port
@@ -43,5 +35,19 @@ var routes = require('./app/routes/index');
 app.use('/api', routes);
 
 
+// Middleware Catch Errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"messages" : err.name + ": " + err.message});
+  }
+});
+
+
 app.listen(port);
 console.log('Server running successfully on port: ' + port);
+
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(function(req, res) {
+	res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});

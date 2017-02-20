@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
+	secret: 'MY_SECRET',
+	userProperty: 'payload'
 });
 
 
@@ -20,7 +20,14 @@ router.get('/profile', auth, ctrlProfile.profileRead);
 
 // User Authentication
 router.post('/register', ctrlAuth.register);
-router.post('/login', ctrlAuth.login);
+router.post('/login', emailToLowerCase, ctrlAuth.login);
+
+
+// Middleware to transform email to lowercase for verification purposes
+function emailToLowerCase(req, res, next){
+    req.body.email = req.body.email.toLowerCase();
+    next();
+}
 
 
 // Routes ending in /users

@@ -13,7 +13,7 @@ module.exports.register = function(req, res) {
 	var user = new User();
 	
 	user.name = req.body.name;
-	user.email = req.body.email;
+	user.email = req.body.email.toLowerCase();
 	
 	user.setPassword(req.body.password);
 	
