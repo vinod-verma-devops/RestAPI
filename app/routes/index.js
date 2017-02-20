@@ -1,45 +1,27 @@
 var express = require('express');
-var app = express();
 var router = express.Router();
-var passport = require('passport');
-var mongoose = require('mongoose');
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
 
-// Import User Objects
+
+// Import Users.js
 var User = require('../../app/models/users');
 
-// Import User Authentication
-var Auth = require('../../app/controllers/authentication');
 
-// Middleware for all requests
-router.use(function(req, res, next) {
-    console.log('Query made.');
-    next();
-});
+var ctrlProfile = require('../controllers/profile');
+var ctrlAuth = require('../controllers/authentication');
 
-// Index API file (http://107.170.217.216:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'API is LIVE' });   
-});
 
-// Registering a new user
-router.route('/register')
-	
-	// Create a new user
-    .post(function(req, res) {
-        
-       Auth.register(req, res);
-        
-    });
+// User Profile
+router.get('/profile', auth, ctrlProfile.profileRead);
 
-// Logging in an existing user
-router.route('/login')
-	
-	// Create a new user
-    .post(function(req, res) {
-        
-        Auth.login(req, res);
-        
-    });
+// User Authentication
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
+
 
 // Routes ending in /users
 router.route('/users')

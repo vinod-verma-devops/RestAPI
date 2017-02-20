@@ -4,6 +4,11 @@ var mongoose = require('mongoose');
 // Import User.js
 var User = require('../../app/models/users');
 
+var sendJSONresponse = function(res, status, content) {
+	res.status(status);
+	res.json(content);
+};
+
 module.exports.register = function(req, res) {
 	var user = new User();
 	

@@ -16,12 +16,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+// Middleware Catch Errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"messages" : err.name + ": " + err.message});
+  }
+});
+
+
 // Set port
 var port = process.env.PORT || 8080;
 
 
 // Connect with the MongoDB NoSQL database
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 
@@ -29,7 +39,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/test');
 var routes = require('./app/routes/index');
 
 
+// Routes via /api
 app.use('/api', routes);
+
 
 app.listen(port);
 console.log('Server running successfully on port: ' + port);
