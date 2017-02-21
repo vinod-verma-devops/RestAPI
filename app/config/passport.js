@@ -4,8 +4,9 @@ var mongoose = require('mongoose');
 
 // Import User.js
 var User = require('../../app/models/users');
+var Vendor = require('../../app/models/vendors');
 
-passport.use(new LocalStrategy({
+passport.use('local.one', new LocalStrategy({
 		usernameField: 'email'
 	},
 	function(username, password, done) {
@@ -25,6 +26,28 @@ passport.use(new LocalStrategy({
 			}
 			// If credentials are correct, return the user object
 			return done(null, user);
+		});
+	}
+));
+
+passport.use('local.two', new LocalStrategy(
+	function(username, password, done) {
+		Vendor.findOne({ username: username }, function (err, vendor) {
+			if (err) { return done(err); }
+			// Return if user not found in database
+			if (!vendor) {
+				return done(null, false, {
+					message: 'Vendor not found'
+				});
+			}
+			// Return if password is wrong
+			if (!vendor.validPassword(password)) {
+				return done(null, false, {
+					message: 'Password is wrong'
+				});
+			}
+			// If credentials are correct, return the user object
+			return done(null, vendor);
 		});
 	}
 ));

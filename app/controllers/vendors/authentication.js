@@ -1,8 +1,8 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 
-// Import User.js
-var User = require('../../app/models/users');
+// Import Vendor.js
+var Vendor = require('../../../app/models/vendors');
 
 var sendJSONresponse = function(res, status, content) {
 	res.status(status);
@@ -10,16 +10,17 @@ var sendJSONresponse = function(res, status, content) {
 };
 
 module.exports.register = function(req, res) {
-	var user = new User();
+	var vendor = new Vendor();
 	
-	user.name = req.body.name;
-	user.email = req.body.email.toLowerCase();
+	vendor.name = req.body.name;
+	vendor.email = req.body.email.toLowerCase();
+	vendor.username = req.body.username.toLowerCase();
 	
-	user.setPassword(req.body.password);
+	vendor.setPassword(req.body.password);
 	
-	user.save(function(err) {
+	vendor.save(function(err) {
 		var token;
-		token = user.generateJwt();
+		token = vendor.generateJwt();
 		res.status(200);
 		res.json({
 			"token" : token
@@ -29,7 +30,7 @@ module.exports.register = function(req, res) {
 
 module.exports.login = function(req, res) {
 
-	passport.authenticate('local', function(err, user, info){
+	passport.authenticate('local.two', function(err, vendor, info){
 		var token;
 	
 		// If Passport throws/catches an error
@@ -38,15 +39,15 @@ module.exports.login = function(req, res) {
 			return;
 		}
 	
-		// If a user is found
-		if(user){
-			token = user.generateJwt();
+		// If a vendor is found
+		if(vendor){
+			token = vendor.generateJwt();
 			res.status(200);
 			res.json({
 				"token" : token
 			});
 		} else {
-			// If user is not found
+			// If vendor is not found
 			res.status(401).json(info);
 		}
 	})(req, res);

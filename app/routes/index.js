@@ -10,22 +10,37 @@ var auth = jwt({
 // Import Users.js
 var User = require('../../app/models/users');
 
+var Vendor = require('../../app/models/vendors');
 
-var ctrlProfile = require('../controllers/profile');
-var ctrlAuth = require('../controllers/authentication');
+
+var userProfile = require('../controllers/users/profile');
+var userAuth = require('../controllers/users/authentication');
+
+var vendorProfile = require('../controllers/vendors/profile');
+var vendorAuth = require('../controllers/vendors/authentication');
 
 
 // User Profile
-router.get('/profile', auth, ctrlProfile.profileRead);
+router.get('/users/profile', auth, userProfile.profileRead);
+
+router.get('/vendors/profile', auth, vendorProfile.profileRead);
 
 // User Authentication
-router.post('/register', ctrlAuth.register);
-router.post('/login', emailToLowerCase, ctrlAuth.login);
+router.post('/users/register', userAuth.register);
+router.post('/users/login', emailToLowerCase, userAuth.login);
+
+router.post('/vendors/register', vendorAuth.register);
+router.post('/vendors/login', usernameToLowerCase, vendorAuth.login);
 
 
 // Middleware to transform email to lowercase for verification purposes
 function emailToLowerCase(req, res, next){
     req.body.email = req.body.email.toLowerCase();
+    next();
+}
+
+function usernameToLowerCase(req, res, next){
+    req.body.username = req.body.username.toLowerCase();
     next();
 }
 
@@ -40,6 +55,18 @@ router.route('/users')
                 res.send(err);
 
             res.json(users);
+        });
+    });
+    
+router.route('/vendors')
+    
+    // Get all the users
+    .get(function(req, res) {
+        Vendor.find(function(err, vendors) {
+            if (err)
+                res.send(err);
+
+            res.json(vendors);
         });
     });
 

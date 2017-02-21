@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var User = require('../../app/models/users');
+var User = require('../../../app/models/users');
 
 module.exports.profileRead = function(req, res) {
 
