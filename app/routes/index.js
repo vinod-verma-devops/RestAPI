@@ -11,8 +11,6 @@ var auth = jwt({
 var User = require('../../app/models/users');
 var Vendor = require('../../app/models/vendors');
 var Product = require('../../app/models/products');
-var Card = require('../../app/models/cards');
-
 
 var userProfile = require('../controllers/users/profile');
 var userAuth = require('../controllers/users/authentication');
