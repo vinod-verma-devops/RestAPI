@@ -9,8 +9,9 @@ var auth = jwt({
 
 // Import Users.js
 var User = require('../../app/models/users');
-
 var Vendor = require('../../app/models/vendors');
+var Product = require('../../app/models/products');
+var Card = require('../../app/models/cards');
 
 
 var userProfile = require('../controllers/users/profile');
@@ -18,6 +19,8 @@ var userAuth = require('../controllers/users/authentication');
 
 var vendorProfile = require('../controllers/vendors/profile');
 var vendorAuth = require('../controllers/vendors/authentication');
+
+var productCreate = require('../controllers/products/product');
 
 
 // User Profile
@@ -31,6 +34,8 @@ router.post('/users/login', emailToLowerCase, userAuth.login);
 
 router.post('/vendors/register', vendorAuth.register);
 router.post('/vendors/login', usernameToLowerCase, vendorAuth.login);
+
+router.post('/products/create', productCreate.create);
 
 
 // Middleware to transform email to lowercase for verification purposes
@@ -60,13 +65,93 @@ router.route('/users')
     
 router.route('/vendors')
     
-    // Get all the users
+    // Get all the vendors
     .get(function(req, res) {
         Vendor.find(function(err, vendors) {
             if (err)
                 res.send(err);
 
             res.json(vendors);
+        });
+    });
+    
+router.route('/products')
+    
+    // Get all the products
+    .get(function(req, res) {
+        Product.find(function(err, products) {
+            if (err)
+                res.send(err);
+
+            res.json(products);
+        });
+    });
+ 
+router.route('/products/short')
+    
+    // Get all the products
+    .get(function(req, res) {
+        Product.find({}, 'title location price', function(err, products) {
+            if (err)
+                res.send(err);
+
+            res.json(products);
+        });
+    });
+
+
+router.route('/products/:product_id')
+    
+    // Get all the products
+    .get(function(req, res) {
+        Product.findById(req.params.product_id, function(err, product) {
+            if (err)
+                res.send(err);
+            res.json(product);
+        });
+    })
+    
+    .put(function(req, res) {
+
+        Product.findById(req.params.product_id, function(err, product) {
+
+            if (err)
+                res.send(err);
+			
+			if (req.body.title)
+            	product.title = req.body.title;
+            if (req.body.location)
+            	product.location = req.body.location;
+            if (req.body.description)
+            	product.description = req.body.description;
+            if (req.body.price)
+            	product.price = req.body.price;
+            if (req.body.frequency)
+            	product.frequency = req.body.frequency;
+            if (req.body.age)
+            	product.age = req.body.age;
+            if (req.body.note)
+            	product.note = req.body.note;
+
+            product.save(function(err) {
+                if (err)
+                    res.send(err);
+
+                res.json({ message: 'Product updated!' });
+            });
+
+        });
+    })
+    
+    // Delete user with specific id
+    .delete(function(req, res) {
+        Product.remove({
+            _id: req.params.product_id
+        }, function(err, user) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Successfully deleted' });
         });
     });
 
