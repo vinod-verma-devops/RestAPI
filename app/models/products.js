@@ -2,7 +2,7 @@
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var Images = new Schema({
+var ImageSchema = new Schema({
     kind: { 
         type: String, 
         enum: ['thumbnail', 'main', 'sub1', 'sub2'],
@@ -12,10 +12,6 @@ var Images = new Schema({
 	    type: String,
 	    required: true
 	}
-});
-
-var Categories = new Schema({
-    name: String
 });
 
 // Defining the user schema
@@ -32,8 +28,11 @@ var ProductSchema   = new Schema({
 		type: String,
 		required: true
 	},
-	images: [Images],
-    categories: [Categories],
+	images: [ImageSchema],
+    category: {
+		type: String,
+		required: true
+	},
 	price: {
 		type: Number,
 		required: true
@@ -56,5 +55,10 @@ var ProductSchema   = new Schema({
 	__v: {type: Number, select: false}
 });
 
+var ImageModel = mongoose.model('Image', ImageSchema);
+var ProductModel = mongoose.model('Product', ProductSchema);
 
-module.exports = mongoose.model('Product', ProductSchema);
+module.exports = {
+	ImageModel: ImageModel,
+	ProductModel: ProductModel
+};

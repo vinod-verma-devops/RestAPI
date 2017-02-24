@@ -1,5 +1,5 @@
 // Import Products.js
-var Product = require('../../../app/models/products');
+var Model = require('../../../app/models/products');
 
 var sendJSONresponse = function(res, status, content) {
 	res.status(status);
@@ -8,13 +8,12 @@ var sendJSONresponse = function(res, status, content) {
 
 module.exports.create = function(req, res) {
 	
-	var product = new Product();
+	var product = new Model.ProductModel();
 	
 	product.title = req.body.title;
 	product.location = req.body.location;
 	product.description = req.body.description;
-	images = req.body.images;
-    categories = req.body.categories;
+    product.category = req.body.category;
 	product.price = req.body.price;
 	product.frequency = req.body.frequency;
 	product.age = req.body.age;
@@ -22,9 +21,14 @@ module.exports.create = function(req, res) {
 
 	
 	product.save(function(err) {
-		res.status(200);
-		res.json({
-			"message" : "Successfully created product"
-		});
+		if (err) {
+			console.log('ERROR MSG: ', err);
+			res.status(500).send(err);
+		} else {
+			res.status(200);
+			res.json({
+				"message" : "Successfully created product"
+			});
+		}
 	});
 };

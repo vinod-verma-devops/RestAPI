@@ -82,7 +82,7 @@ router.route('/products')
     
     // Get all the products
     .get(function(req, res) {
-        Product.find(function(err, products) {
+        Product.ProductModel.find(function(err, products) {
             if (err)
                 res.send(err);
 
@@ -94,7 +94,7 @@ router.route('/products/short')
     
     // Get all the products
     .get(function(req, res) {
-        Product.find({}, 'title location price', function(err, products) {
+        Product.ProductModel.find({}, 'title location price', function(err, products) {
             if (err)
                 res.send(err);
 
@@ -107,7 +107,7 @@ router.route('/products/:product_id')
     
     // Get all the products
     .get(function(req, res) {
-        Product.findById(req.params.product_id, function(err, product) {
+        Product.ProductModel.findById(req.params.product_id, function(err, product) {
             if (err)
                 res.send(err);
             res.json(product);
@@ -116,7 +116,7 @@ router.route('/products/:product_id')
     
     .put(function(req, res) {
 
-        Product.findById(req.params.product_id, function(err, product) {
+        Product.ProductModel.findById(req.params.product_id, function(err, product) {
 
             if (err)
                 res.send(err);
@@ -148,7 +148,7 @@ router.route('/products/:product_id')
     
     // Delete user with specific id
     .delete(function(req, res) {
-        Product.remove({
+        Product.ProductModel.remove({
             _id: req.params.product_id
         }, function(err, user) {
             if (err)
