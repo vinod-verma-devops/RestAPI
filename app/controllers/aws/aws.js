@@ -13,6 +13,18 @@ module.exports.create = function(req, res) {
 			}
 		});
 		s3bucket.createBucket(function () {
+			
+			var ext = filename.split('.').pop();
+			function randomString(length, chars) {
+				var result = '';
+				for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+					return result;
+			}
+			
+			var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+			
+			file.originalFilename = rString + '.' + ext;
+			
 			var params = {
 				Key: file.originalFilename,
 				Body: data

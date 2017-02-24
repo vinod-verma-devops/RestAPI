@@ -1,3 +1,7 @@
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath(__dirname+'/'+'../../../app/config/aws.json');
+var fs = require('fs');
+
 // Import Products.js
 var Model = require('../../../app/models/products');
 
@@ -9,6 +13,7 @@ var sendJSONresponse = function(res, status, content) {
 module.exports.create = function(req, res) {
 	
 	var product = new Model.ProductModel();
+	var image = new Model.ImageModel();
 	
 	product.title = req.body.title;
 	product.location = req.body.location;
@@ -18,6 +23,60 @@ module.exports.create = function(req, res) {
 	product.frequency = req.body.frequency;
 	product.age = req.body.age;
 	product.note = req.body.note;
+	
+	image.kind = "Thumnail";
+	
+	
+	var file = req.files.file;
+	
+	var ext = file.originalFilename.split('.').pop();
+	function randomString(length, chars) {
+		var result = '';
+		for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+			return result;
+	}
+	
+	var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+	
+	file.originalFilename = rString + '.' + ext;
+	
+	image.url = file.originalFilename;
+	
+	
+	fs.readFile(file.path, function (err, data) {
+		if (err) throw err;
+		var s3bucket = new AWS.S3({
+			params: {
+				Bucket: 'rentwisebucket'
+			}
+		});
+		s3bucket.createBucket(function () {
+
+			var params = {
+				Key: file.originalFilename,
+				Body: data
+			};
+			s3bucket.upload(params, function (err, data) {
+				fs.unlink(file.path, function (err) {
+					if (err) {
+						console.error(err);
+					}
+					console.log('Temp File Delete');
+				});
+		
+				console.log("PRINT FILE:", file);
+				if (err) {
+					console.log('ERROR MSG: ', err);
+					res.status(500).send(err);
+				} else {
+					console.log('Successfully uploaded data');
+					res.status(200).end();
+				}
+			});
+		});
+	});
+	
+	product.images.push(image);
 
 	
 	product.save(function(err) {

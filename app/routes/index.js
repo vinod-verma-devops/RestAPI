@@ -34,7 +34,7 @@ router.post('/users/login', emailToLowerCase, userAuth.login);
 router.post('/vendors/register', vendorAuth.register);
 router.post('/vendors/login', usernameToLowerCase, vendorAuth.login);
 
-router.post('/products/create', productCreate.create);
+router.post('/products/create', multipartyMiddleware, productCreate.create);
 
 router.post('/images/upload', multipartyMiddleware, imgUpload.create);
 
