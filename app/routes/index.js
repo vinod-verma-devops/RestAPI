@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
-var auth = jwt({
-	secret: 'MY_SECRET',
-	userProperty: 'payload'
-});
+var auth = jwt({secret: 'MY_SECRET', userProperty: 'payload'});
 
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty();
 
 // Import Users.js
 var User = require('../../app/models/users');
@@ -19,6 +18,8 @@ var vendorProfile = require('../controllers/vendors/profile');
 var vendorAuth = require('../controllers/vendors/authentication');
 
 var productCreate = require('../controllers/products/product');
+
+var imgUpload = require('../controllers/aws/aws');
 
 
 // User Profile
@@ -34,6 +35,10 @@ router.post('/vendors/register', vendorAuth.register);
 router.post('/vendors/login', usernameToLowerCase, vendorAuth.login);
 
 router.post('/products/create', productCreate.create);
+
+router.post('/images/upload', multipartyMiddleware, imgUpload.create);
+
+//router.delete('/images/delete', imgUpload.delete);
 
 
 // Middleware to transform email to lowercase for verification purposes
