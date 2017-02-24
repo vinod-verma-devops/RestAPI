@@ -5,7 +5,7 @@ var Schema       = mongoose.Schema;
 var ImageSchema = new Schema({
     kind: { 
         type: String, 
-        /*enum: ['thumbnail', 'main', 'sub1', 'sub2'],*/
+        enum: ['thumbnail', 'main', 'sub1', 'sub2'],
         required: true
     },
     url: {

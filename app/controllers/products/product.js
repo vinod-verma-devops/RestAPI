@@ -10,39 +10,19 @@ var sendJSONresponse = function(res, status, content) {
 	res.json(content);
 };
 
-module.exports.create = function(req, res) {
-	
-	var product = new Model.ProductModel();
+function iterate(req, res, index) {
 	var image = new Model.ImageModel();
-	
-	product.title = req.body.title;
-	product.location = req.body.location;
-	product.description = req.body.description;
-    product.category = req.body.category;
-	product.price = req.body.price;
-	product.frequency = req.body.frequency;
-	product.age = req.body.age;
-	product.note = req.body.note;
-	
-	image.kind = "Thumnail";
-	
-	
-	var file = req.files.file;
-	
+	image.kind = image.schema.path('kind').enumValues[index];
+	var file = req;
 	var ext = file.originalFilename.split('.').pop();
 	function randomString(length, chars) {
 		var result = '';
 		for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
 			return result;
 	}
-	
 	var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-	
 	file.originalFilename = rString + '.' + ext;
-	
 	image.url = file.originalFilename;
-	
-	
 	fs.readFile(file.path, function (err, data) {
 		if (err) throw err;
 		var s3bucket = new AWS.S3({
@@ -75,9 +55,25 @@ module.exports.create = function(req, res) {
 			});
 		});
 	});
-	
-	product.images.push(image);
+	return image;
+}
 
+module.exports.create = function(req, res) {
+	
+	var product = new Model.ProductModel();
+	
+	product.title = req.body.title;
+	product.location = req.body.location;
+	product.description = req.body.description;
+    product.category = req.body.category;
+	product.price = req.body.price;
+	product.frequency = req.body.frequency;
+	product.age = req.body.age;
+	product.note = req.body.note;
+	
+	for (var i = 0; i < req.files.file.length; i++) {
+		product.images.push(iterate(req.files.file[0], res, i));
+	}
 	
 	product.save(function(err) {
 		if (err) {
