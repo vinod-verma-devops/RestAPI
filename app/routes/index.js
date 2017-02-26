@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
-var auth = jwt({secret: 'MY_SECRET', userProperty: 'payload'});
+var auth = jwt({secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn', userProperty: 'payload'});
 
 var multiparty = require('connect-multiparty'),
     multipartyMiddleware = multiparty();
@@ -21,6 +21,8 @@ var productCreate = require('../controllers/products/product');
 
 var imgUpload = require('../controllers/aws/aws');
 
+var session = require('../sessions/session');
+
 
 // User Profile
 router.get('/users/profile', auth, userProfile.profileRead);
@@ -37,6 +39,12 @@ router.post('/vendors/login', usernameToLowerCase, vendorAuth.login);
 router.post('/products/create', multipartyMiddleware, productCreate.create);
 
 router.post('/images/upload', multipartyMiddleware, imgUpload.create);
+
+router.post('/cart/add/:pid', session.addItem);
+
+router.get('/cart', session.list);
+
+router.post('/cart/delete', session.removeItem);
 
 //router.delete('/images/delete', imgUpload.delete);
 

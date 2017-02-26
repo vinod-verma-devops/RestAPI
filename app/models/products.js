@@ -55,6 +55,12 @@ var ProductSchema   = new Schema({
 	__v: {type: Number, select: false}
 });
 
+ProductSchema.path('description').validate(function(txt) {
+    console.log("validate description");
+    console.log(txt);
+    return txt.length > 10;
+}, 'Product description should be more than 10 characters');
+
 var ImageModel = mongoose.model('Image', ImageSchema);
 var ProductModel = mongoose.model('Product', ProductSchema);
 
