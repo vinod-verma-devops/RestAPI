@@ -1,5 +1,5 @@
 // Import Mongoose Schema
-/*var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var vendorSchema = new Schema({
@@ -20,21 +20,15 @@ var productSchema = new Schema({
 	title: {
 		type: String
 	},
-	orders: [{type: Number, ref: 'Order'}]
+	orders: [{type: Schema.Types.ObjectId, ref: 'Order'}]
 });
 
 var orderSchema = new Schema({
-	_id: {
-		type: Number
-	},
 	_user: {
 		type: Number,
 		ref: 'User'
 	},
-	_vendor: {
-		type: Number,
-		ref: 'Vendor'
-	}
+	product: {type: Schema.Types.ObjectId, ref: 'Product'}
 });
 
 var userSchema = new Schema({
@@ -57,4 +51,4 @@ module.exports = {
 	productModel: Product,
 	orderModel: Order,
 	userModel: User
-};*/
+};

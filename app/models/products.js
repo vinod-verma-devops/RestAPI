@@ -1,4 +1,4 @@
-// Import MongoDB
+/*// Import MongoDB
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
@@ -67,4 +67,4 @@ var ProductModel = mongoose.model('Product', ProductSchema);
 module.exports = {
 	ImageModel: ImageModel,
 	ProductModel: ProductModel
-};
+};*/

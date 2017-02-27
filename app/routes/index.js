@@ -56,7 +56,11 @@ router.post('/orders/add/:pid', auth, orderAdd.addOrder);
 
 router.post('/linkProduct', Controller.linkProduct);
 router.get('/viewProduct', Controller.viewProduct);
+router.put('/addProduct', Controller.addProduct);
 
+router.post('/linkUser', Controller.linkUser);
+router.get('/viewOrder', Controller.viewOrder);
+router.put('/addOrder', Controller.addOrder);
 
 // Middleware to transform email to lowercase for verification purposes
 function emailToLowerCase(req, res, next){

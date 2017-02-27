@@ -1,5 +1,5 @@
 // Import MongoDB
-var mongoose     = require('mongoose');
+/*var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 // Password Authentication & Encryption
@@ -27,7 +27,7 @@ var VendorSchema   = new Schema({
 	__v: {type: Number, select: false}
 });
 
-/** Vendor Schema Methods **/
+/** Vendor Schema Methods **//*
 VendorSchema.methods.generateJwt = function() {
 	var expiry = new Date();
 	expiry.setDate(expiry.getDate() + 7);
@@ -50,4 +50,4 @@ VendorSchema.methods.validPassword = function(password) {
 	return this.hash === hash;
 };
 
-module.exports = mongoose.model('Vendor', VendorSchema);
+module.exports = mongoose.model('Vendor', VendorSchema);*/

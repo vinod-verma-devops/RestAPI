@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+/*var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProductSchema = require('./products');
@@ -10,7 +10,7 @@ var OrderSchema = new Schema({
 	product: { type: Schema.Types.ObjectId, ref: 'ProductSchema' }
 });
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Order', OrderSchema);*/
 
 /*Order.find({}).populate('products.product').exec(function(err, orders) {
 	console.log();
