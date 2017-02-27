@@ -23,6 +23,10 @@ var imgUpload = require('../controllers/aws/aws');
 
 var session = require('../sessions/session');
 
+var orderAdd = require('../controllers/orders/order');
+
+var Controller = require('../controller.js');
+
 
 // User Profile
 router.get('/users/profile', auth, userProfile.profileRead);
@@ -46,7 +50,12 @@ router.get('/cart', session.list);
 
 router.post('/cart/delete', session.removeItem);
 
+router.post('/orders/add/:pid', auth, orderAdd.addOrder);
+
 //router.delete('/images/delete', imgUpload.delete);
+
+router.post('/linkProduct', Controller.linkProduct);
+router.get('/viewProduct', Controller.viewProduct);
 
 
 // Middleware to transform email to lowercase for verification purposes
