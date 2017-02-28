@@ -193,15 +193,20 @@ module.exports.viewProduct = function(req, res) {
 	
 	var Product = Model.productModel;
 	
+	var id = '58b3f0b4539c49765ea37e01';
+	
 	Product
-	.findOne({title: 'Glossybox Original'})
-	.populate('_vendor')
+	//.findOne({title: 'Glossybox Original'})
+	.findById(id)
+	//.select('orders')
+	//.populate('_vendor orders')
+	.populate({path: 'orders', model: Model.orderModel, populate: {path: '_user', model: Model.userModel}})
 	.exec(function(err, product) {
 		if (err) {
 			console.log('ERROR MSG: ', err);
 			res.status(500).send(err);
 		};
-		console.log('The vendor is %s', product._vendor.name);
+		//console.log('The vendor is %s', product._vendor.name);
 		res.status(200).json(product);
 	});
 	
@@ -243,13 +248,14 @@ module.exports.viewOrder = function(req, res) {
 	var id = 102;
 	Vendor
 	.findById(id)
-	.populate('products')
+	.select('products')
+	.populate({path: 'products', model: Model.productModel, populate: {path: 'orders', model: Model.orderModel, populate: {path: '_user', model: Model.userModel, select: 'name'}}})
 	.exec(function(err, vendor) {
 		if (err) {
 			console.log('ERROR MSG: ', err);
 			res.status(500).send(err);
 		};
-		console.log(vendor.products);
+		//console.log(vendor.products);
 		res.status(200).json(vendor);
 	});
 	
