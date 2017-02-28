@@ -4,8 +4,10 @@ var express = require('express');
 var app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const expressSession = require('express-session');
 var passport = require('passport');
 
+const MongoStore = require('connect-mongo')(expressSession);
 
 // Passport.js Initialization
 require('./app/config/passport');
@@ -16,6 +18,17 @@ app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(expressSession({
+	secret: 'mdfkldfgkl&*(sas/d,asldsjf()*)(mlksdmfNfjSDsdfYUHNn',
+	cookie: { maxAge: 60000 },
+	resave: true,
+	saveUninitialized: true,
+	store: new MongoStore({
+	    db: 'rentwisesession',
+	    url: 'mongodb://127.0.0.1:27017/instacrate'
+	})
+}));
+
 
 // Set port
 var port = process.env.PORT || 8080;
@@ -24,7 +37,7 @@ var port = process.env.PORT || 8080;
 // Connect with the MongoDB NoSQL database
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1:27017/test');
+mongoose.connect('mongodb://127.0.0.1:27017/instacrate');
 
 
 // API routes

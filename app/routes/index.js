@@ -54,11 +54,21 @@ router.post('/orders/add/:pid', auth, orderAdd.addOrder);
 
 //router.delete('/images/delete', imgUpload.delete);
 
-router.post('/linkProduct', Controller.linkProduct);
-router.get('/viewProduct', Controller.viewProduct);
-router.put('/addProduct', Controller.addProduct);
+router.post('/registerVendor', Controller.registerVendor);
+router.post('/loginVendor', usernameToLowerCase, Controller.loginVendor);
+router.get('/profileVendor', auth, Controller.profileVendor);
 
-router.post('/linkUser', Controller.linkUser);
+
+
+router.post('/registerUser', Controller.registerUser);
+router.post('/loginUser', emailToLowerCase, Controller.loginUser);
+router.get('/profileUser', auth, Controller.profileUser);
+
+
+
+
+router.get('/viewProduct', Controller.viewProduct);
+router.post('/addProduct', multipartyMiddleware, Controller.addProduct);
 router.get('/viewOrder', Controller.viewOrder);
 router.put('/addOrder', Controller.addOrder);
 
