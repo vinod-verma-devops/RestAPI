@@ -11,7 +11,7 @@ module.exports.registerUser = function(req, res) {
 	
 	var user = new Model.userModel();
 	
-	user._id = 11;
+	//user._id = 11;
 	user.name = req.body.name;
 	user.email = req.body.email.toLowerCase();
 	
@@ -60,7 +60,7 @@ module.exports.registerVendor = function(req, res) {
 	
 	var vendor = new Model.vendorModel();
 	
-	vendor._id = 103;
+	//vendor._id = 103;
 	vendor.name = req.body.name;
 	vendor.email = req.body.email.toLowerCase();
 	vendor.username = req.body.username.toLowerCase();
@@ -196,55 +196,62 @@ module.exports.addProduct = function(req, res) {
 	
 	var Vendor = Model.vendorModel;
 	
-	var id = 103; //req.params.product_id
-	
-	Vendor
-	.findById(id)
-	.exec(function(err, vendor) {
-		if (err) {
-			console.log('ERROR MSG: ', err);
-			res.status(500).send(err);
-		}	
+	if (!req.payload._id) {
 		
-		vendor.save(function(err, callback) {
+		res.status(401).json({
+			"message" : "Must be logged in as a vendor to add product."
+		});
+		
+	} else {
+		
+		Vendor
+		.findById(req.payload._id)
+		.exec(function(err, vendor) {
 			if (err) {
 				console.log('ERROR MSG: ', err);
 				res.status(500).send(err);
-			}
+			}	
 			
-			var product = new Model.productModel();
-			
-			product.title = req.body.title;
-			product.location = req.body.location;
-			product.description = req.body.description;
-		    product.category = req.body.category;
-			product.price = req.body.price;
-			product.frequency = req.body.frequency;
-			product.age = req.body.age;
-			product.note = req.body.note;
-			
-			for (var i = 0; i < req.files.file.length; i++) {
-				product.images.push(iterate(req.files.file[i], res, i));
-			}
-			
-			product._vendor = vendor._id
-			product.save(function (err) {
+			vendor.save(function(err, callback) {
 				if (err) {
 					console.log('ERROR MSG: ', err);
 					res.status(500).send(err);
-				}  else {
-					res.status(200);
-					res.json({
-						"message" : "Successfully created product"
-					});
 				}
+				
+				var product = new Model.productModel();
+				
+				product.title = req.body.title;
+				product.location = req.body.location;
+				product.description = req.body.description;
+			    product.category = req.body.category;
+				product.price = req.body.price;
+				product.frequency = req.body.frequency;
+				product.age = req.body.age;
+				product.note = req.body.note;
+				
+				for (var i = 0; i < req.files.file.length; i++) {
+					product.images.push(iterate(req.files.file[i], res, i));
+				}
+				
+				product._vendor = vendor._id
+				product.save(function (err) {
+					if (err) {
+						console.log('ERROR MSG: ', err);
+						res.status(500).send(err);
+					}  else {
+						res.status(200);
+						res.json({
+							"message" : "Successfully created product"
+						});
+					}
+				});
+				vendor.products.push(product);
+				vendor.save(callback);
 			});
-			vendor.products.push(product);
-			vendor.save(callback);
+			
+			
 		});
-		
-		
-	});
+	};
 	
 };
 

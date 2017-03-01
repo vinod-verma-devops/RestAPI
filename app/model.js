@@ -6,9 +6,9 @@ var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
 var vendorSchema = new Schema({
-	_id: {
+	/*_id: {
 		type: Number
-	},
+	},*/
 	name: {
 		type: String,
 		required: true
@@ -42,7 +42,7 @@ var imageSchema = new Schema({
 
 var productSchema = new Schema({
 	_vendor: {
-		type: Number,
+		type: Schema.Types.ObjectId,
 		ref: 'Vendor'
 	},
 	title: {
@@ -86,7 +86,7 @@ var productSchema = new Schema({
 
 var orderSchema = new Schema({
 	_user: {
-		type: Number,
+		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
 	fulfilled: {
@@ -96,9 +96,9 @@ var orderSchema = new Schema({
 });
 
 var userSchema = new Schema({
-	_id: {
+	/*_id: {
 		type: Number
-	},
+	},*/
 	name: {
 		type: String,
 		required: true

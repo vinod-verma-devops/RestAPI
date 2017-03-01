@@ -51,14 +51,14 @@
 		
 		// Call register API endpoint
 		register = function(user) {
-			return $http.post('/api/users/register', user).success(function(data){
+			return $http.post('/api/registerUser', user).success(function(data){
 				saveToken(data.token);
 			});
 		};
 		
 		// Call login API endpoint
 		login = function(user) {
-			return $http.post('/api/users/login', user).success(function(data) {
+			return $http.post('/api/loginUser', user).success(function(data) {
 				saveToken(data.token);
 			});
 		};

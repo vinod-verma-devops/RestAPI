@@ -25,7 +25,7 @@ app.use(expressSession({
 	saveUninitialized: true,
 	store: new MongoStore({
 	    db: 'rentwisesession',
-	    url: 'mongodb://127.0.0.1:27017/instacrate'
+	    url: 'mongodb://127.0.0.1:27017/rentwise'
 	})
 }));
 
@@ -37,7 +37,7 @@ var port = process.env.PORT || 8080;
 // Connect with the MongoDB NoSQL database
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1:27017/instacrate');
+mongoose.connect('mongodb://127.0.0.1:27017/rentwise');
 
 
 // API routes
