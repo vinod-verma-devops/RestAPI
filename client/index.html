@@ -2,22 +2,42 @@
 <html ng-app="meanApp">
 	
 	<head>
-		<title>Rentwise Login</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="favicon.ico">
+		
+		<title>Rentwise</title>
+		
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/static.css" rel="stylesheet">
+		<link href="/css/index.css" rel="stylesheet">
+		<link href="/css/stack.css" rel="stylesheet">
+		<link href="/css/icons.min.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		
+		<script src="https://code.jquery.com/jquery-2.1.4.js" data-require="jquery@*" data-semver="2.1.4"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
 	</head>
 	
-	<body ng-view>
+	<body ng-view autoscroll="true" ng-cloak>
 		
 	<base href="/">
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 	<script src="main.js"></script>
 	<script src="auth/authentication.js"></script>
 	<script src="nav/navigation.js"></script>
+	<script src="footer/footer.js"></script>
 	<script src="register/register.js"></script>
 	<script src="login/login.js"></script>
 	<script src="profile/profile.js"></script>
 	<script src="auth/data.js"></script>
 	<script src="home/home.js"></script>
+	<script src="all/all.js"></script>
+	<script src="product/product.js"></script>
+	<script src="checkout/checkout.js"></script>
+	<script src="payment/payment.js"></script>
 </html>

@@ -1,14 +1,24 @@
-<div class="navbar navbar-default">
-	<div class="container">
-		<div id="navbar-main">
-			<ul class="nav navbar-nav">
-				<li><a href="/">Home</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li ng-hide="navvm.isLoggedIn"><a href="login">Sign in</a></li>
-				<li ng-show="navvm.isLoggedIn"><a href="profile">{{ navvm.currentUser.name }}</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
+<nav class="navbar nav-static">
+
+	<a class="nav-brand" href="index.html"><img src="img/rentwise_logo.png" /></a>
+	
+	<form class="nav-search">
+		<svg height="18px" width="18px" class="search-icon" x="0px" y="0px" viewBox="0 0 20 20" fill="none" stroke-linecap="round" stroke-width="2"><circle cx="8.737" cy="8.615" r="7.312"></circle><line x1="13.802" y1="13.924" x2="18.575" y2="18.697"></line></svg>
+		<input class="nav-search-child" type="text" placeholder="Search for something to rent">
+	</form>
+	
+	<ul class="nav-child">
+		<li>
+			<a class="nav-link" href="/all"><i class="icon icon-compass"></i> Discover</a>
+		</li>
+		<li ng-hide="navvm.isLoggedIn">
+			<a class="nav-link" href="/login">Log in</a>
+		</li>
+		<li ng-hide="navvm.isLoggedIn">
+			<a class="nav-link" href="/register">Sign up</a>
+		</li>
+		<li ng-show="navvm.isLoggedIn">
+			<a class="nav-link" href="/profile">My Account</a>
+		</li>
+	</ul>
+</nav>

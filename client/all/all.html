@@ -1,39 +1,65 @@
 <navigation></navigation>
 
-<div class="jumbotron">
+<div class="bcrumb">
 	<div class="container">
-		<h1>Rent happiness.</h1>
-		<p class="lead">Why buy when you can rent from those around you?</p>
-		<a class="btn btn-go" href="/all" role="button">Browse All</a>
-	</div>
-</div>
-
-<div class="announcement">
-	<div class="container">
-		<p><i class="icon icon-map"></i> Currently available at UC Berkeley</p>
+		<div class="sorter">
+			<span class="nav-sort">Search By:</span>
+			<div class="dropdown">
+				<button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Categories
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Electronics</a>
+					<a class="dropdown-item" href="#">Kitchen</a>
+					<a class="dropdown-item" href="#">Outdoors</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Locations
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Unit 3</a>
+					<a class="dropdown-item" href="#">Foothill</a>
+					<a class="dropdown-item" href="#">Southside</a>
+				</div>
+			</div>
+		</div>
+		<div class="filterer float-right">
+			<span class="nav-sort">Filter By:</span>
+			<div class="dropdown">
+				<button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Relevance
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="#">Relevance</a>
+					<a class="dropdown-item" href="#">A-Z</a>
+					<a class="dropdown-item" href="#">High-Low</a>
+					<a class="dropdown-item" href="#">Location</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
 <div class="content">
 	<div class="container">
-		<h3 class="subtitle">Explore our top rentals</h3>
+		<h3 class="subtitle">Explore <span class="highlight">374</span> of our <span class="highlight">All</span> rentals</h3>
 		<div class="row">
 			<div class="col-12 col-md-3">
-				<a href="/product">
-					<div class="stack">
-						<div class="stack-img">
-							<img class="img-responsive" src="img/boosted_board.png" />
-						</div>
-						<div class="stack-txt">
-							<h2 class="title">Boosted Board</h2>
-							<h4 class="vendor"><i class="icon icon-location-pin"></i> Unit 3</h4>
-							<h6 class="price">$15/day</h6>
-						</div>
-						<div class="stack-overlay">
-							<div class="o-text"><i class="icon icon-popup"></i></div>
-						</div>
+				<div class="stack">
+					<div class="stack-img">
+						<img class="img-responsive" src="img/boosted_board.png" />
 					</div>
-				</a>
+					<div class="stack-txt">
+						<h2 class="title">Boosted Board</h2>
+						<h4 class="vendor"><i class="icon icon-location-pin"></i> Unit 3</h4>
+						<h6 class="price">$15/day</h6>
+					</div>
+					<div class="stack-overlay">
+						<div class="o-text"><i class="icon icon-popup"></i></div>
+					</div>
+				</div>
 			</div>
 			<div class="col-12 col-md-3">
 				<div class="stack">

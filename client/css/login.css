@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+.content {
+	padding-top: 2.5rem;
+}
+
+.median {
+    display: flex;
+    align-items: center;
+    color: #777;
+    font-size: 14px;
+}
+
+.median:before, .median:after {
+    display: block;
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc;
+    box-sizing: inherit;
+    content: "";
+}
+
+.median:before {
+    margin-right: 8px;
+}
+
+.median:after {
+    margin-left: 8px;
+}
+
+.stack {
+	padding: 30px 20px 20px 20px;
+    box-shadow: none;
+    border-radius: 3px;
+    width: 350px;
+    background: #fff;
+    border: 1px solid #dde5ed;
+    margin: auto;
+    margin-bottom: 1.5rem;
+}
+
+/* STACK LOGIN */
+	
+	.stack-login .action > a {
+	    display: inline-block;
+	    color: #00afff;
+	    font-size: 15px;
+	}
+	
+	.stack-login .btn-login {
+	    color: #fff;
+	    cursor: pointer;
+	    font-family: "Open Sans";
+	    letter-spacing: 0.0475rem;
+	    -webkit-font-smoothing: initial;
+	    background: #007ee5;
+	    padding: 0.65rem 0.75rem;
+	    line-height: 1.5;
+	    border-radius: 4px;
+	    margin-top: 1rem;
+	    margin-bottom: calc(1rem + 10px);
+	    width: 100%;
+	}
+	
+	.stack-login .command-wrapper {
+	    text-align: center;
+	    margin-bottom: 1rem;
+	}
+	
+	.stack-login .forgot {
+	    display: inline-block;
+	    float: right;
+	    margin-top: 2px;
+	}
+	
+	.stack-login .forgot > a {
+	    font-weight: normal;
+	    font-size: small;
+	    color: #999;
+	    text-decoration: underline;
+	}
+	
+	.stack-login .form-control {
+	    border: 1px solid #d3dbe2;
+	    box-shadow: none;
+	    border-radius: 2px;
+	}
+	
+	.stack-login input {
+	    margin-bottom: 1rem;
+	    border-radius: 4px;
+	    padding: 0.65rem 0.75rem;
+	    border-color: #ccc !important;
+	}
+	
+	.stack-login input:focus {
+	    border-color: #00afff !important;
+	}
+	
+	.stack-login label {
+	    display: inline-block;
+	    max-width: 100%;
+	    margin-bottom: 0;
+	    font-size: 15px;
+	    margin-bottom: 0.4rem;
+	    font-weight: bold;
+	}
+	
+	.stack-login .title {
+	    font-size: 1.6rem;
+	    font-weight: bold;
+	    text-align: center;
+	    margin-bottom: 1rem;
+	}
+	
+	
+	.stack-login .welcome {
+	    font-weight: normal;
+	    color: #777;
+	    font-size: 16px;
+	    text-align: center;
+	    display: inline-block;
+	    padding-right: 0.5rem;
+	}

@@ -7,7 +7,7 @@
 		    .when('/', {
 		        templateUrl : 'home/home.html',
 		        controller: 'homeCtrl',
-		        controllerAs: 'vm'
+		        controllerAs: 'vm',
 		    })
 		    .when('/register', {
 		        templateUrl : 'register/register.html',
@@ -22,6 +22,26 @@
 		    .when('/profile', {
 		        templateUrl : 'profile/profile.html',
 		        controller: 'profileCtrl',
+		        controllerAs: 'vm'
+		    })
+		    .when('/all', {
+		        templateUrl : 'all/all.html',
+		        controller: 'allCtrl',
+		        controllerAs: 'vm'
+		    })
+		    .when('/product', {
+		        templateUrl : 'product/product.html',
+		        controller: 'productCtrl',
+		        controllerAs: 'vm'
+		    })
+		    .when('/checkout', {
+		        templateUrl : 'checkout/checkout.html',
+		        controller: 'checkoutCtrl',
+		        controllerAs: 'vm'
+		    })
+		    .when('/payment', {
+		        templateUrl : 'payment/payment.html',
+		        controller: 'paymentCtrl',
 		        controllerAs: 'vm'
 		    })
 		    .otherwise({redirectTo: '/'});

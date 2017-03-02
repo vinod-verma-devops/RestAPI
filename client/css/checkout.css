@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+/* UTILITIES */
+
+	.bkg-light {
+		background: #fff;
+	}
+	
+	.eq {
+		min-height: 265px;
+	}
+	
+	
+	.lg {
+		padding-top: 3rem;
+	    padding-bottom: 3rem;
+	}
+	
+	.sm {
+		padding-top: 2.25rem;
+		padding-bottom: 2.25rem;
+	}
+
+.btn-next {
+	cursor: pointer;
+    color: #fff;
+    background: #21ce00;
+    border: #21ce00;
+    padding: .75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.btn-pay {
+	cursor: pointer;
+    color: #fff;
+    background: #21ce00;
+    border: #21ce00;
+    padding: .75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.checkout-head {
+	text-align: center;
+}
+
+.checkout-head .title {
+	color: #333;
+	font-size: 1.9rem;
+    margin-bottom: 1rem;
+}
+
+.checkout-head .vendor {
+	color: #666;
+	font-size: 1.1rem;
+}
+
+.stack {
+	padding: 30px;
+    box-shadow: none;
+    border-radius: 3px;
+    /*width: 350px;*/
+    background: #fff;
+    border: 1px solid #dde5ed;
+    margin: auto;
+}
+
+/* STACK CHECKOUT */
+
+	.stack-chkt li {
+		color: #777;
+	    font-size: 1rem;
+	    padding: .25rem 0;
+	}
+	
+	.stack-chkt ul {
+		list-style-type: none;
+		-webkit-padding-start: 0;
+	}
+	
+	.stack-chkt ul>li>i {
+		padding-right: 0.5rem;
+	}
+	
+	.stack-chkt ul>li>span {
+		color: #555;
+		-webkit-font-smoothing: initial;
+	}
+
+/* STACK PAYMENT */
+	
+	.stack-pay .form-control {
+	    border: 1px solid #d3dbe2;
+	    box-shadow: none;
+	    border-radius: 3px;
+	}
+	
+	.stack-pay h5 {
+		color: #333;
+		font-size: 1.2rem;
+	    font-weight: bold;
+	    margin-bottom: 1rem;
+	}
+	
+	.stack-pay p {
+		color: #777;
+	    font-size: 0.9rem;
+	}
+	
+	.stack-pay input {
+	    margin-bottom: 1rem;
+	    border-radius: 4px;
+	    padding: 0.65rem 0.75rem;
+	    border-color: #ccc !important;
+	}
+	
+	.stack-pay input:focus {
+	    border-color: #00afff !important;
+	}
+	
+	.stack-pay label {
+	    display: inline-block;
+	    max-width: 100%;
+	    margin-bottom: 0;
+	    font-size: 15px;
+	    margin-bottom: 0.4rem;
+	    font-weight: bold;
+	}
+
+/* STACK NOTE */
+
+	.stack-note a {
+		color: #00afff;
+	    font-size: 0.9rem;
+	}
+	
+	.stack-note h4 {
+		color: #333;
+		font-size: 1.5rem;
+	    font-weight: bold;
+	}
+	
+	.stack-note h5 {
+		color: #333;
+		font-size: 1.1rem;
+	    font-weight: bold;
+	}
+	
+	.stack-note h6 {
+		color: #333;
+	    font-size: 0.95rem;
+	    line-height: 1.5;
+	}
+	
+	.stack-note p {
+		color: #777;
+	    font-size: 0.9rem;
+	}
+	
+	.stack-note span {
+		-webkit-font-smoothing: initial;
+	}
