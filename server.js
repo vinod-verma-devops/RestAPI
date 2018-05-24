@@ -30,7 +30,7 @@ app.use(expressSession({
 }));
 
 
-// Set port
+// Set port to 8080
 var port = process.env.PORT || 8080;
 
 
