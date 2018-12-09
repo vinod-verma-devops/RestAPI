@@ -7,3 +7,4 @@ A lightweight REST API built using the MEAN stack: MongoDB, Express.js, Angular.
 * Creation of users and storing their information in the database
 * Logging in the user using crypto-authentication
 * Uses JWT tokens instead of cookies to verify the authenticity of a user
+*
